@@ -2,7 +2,6 @@ from django.db import models
 from django_countries.fields import CountryField
 
 # Create your models here.
-
 class Assets(models.Model):
     Name = models.CharField(max_length= 50)
     Type = models.ForeignKey(
@@ -11,7 +10,7 @@ class Assets(models.Model):
     )
     Quantity = models.IntegerField()
     Model = models.TextField()
-    Serian_Num = models.CharField(max_length= 100)
+    Serian_Num = models.CharField(max_length= 100, null=True, blank=True)
     Department = models.ForeignKey(
         "Department", 
         on_delete=models.CASCADE)
@@ -30,6 +29,10 @@ class Assets(models.Model):
         on_delete=models.CASCADE)
     Description = models.TextField()
 
+    class meta:
+        verbose_name_plural = "Assets Information"
+        ordering = ['Name', 'Type', 'Date_Acquired', 'Vendor']
+        get_latest_by = "Date_Acquired"
     def __str__(self):
         return self.Name
 
@@ -65,15 +68,32 @@ class Department(models.Model):
     def __str__(self):
         return self.Dept_Name
 
+VENDOR_CHOICES = (
+    ('Manufacturer','Manufacturer'),
+    ('wholesaler','Wholesaler'),
+    ('retailers','Retailer'),
+    ('service and maintenance providers','Service and maintenance providers'),
+    ('independent vendors','Independent vendors')
+)
+
 class Vendor(models.Model):
-    Ven_Name = models.CharField(max_length=100)
-    Ven_Address = models.TextField()
-    Ven_City = models.TextField()
-    Ven_Phone = models.CharField(max_length=15)
-    Ven_Country = CountryField(blank_label='(select country)')
+    Company_Name = models.CharField(max_length=50, blank=False, null=False, default='CYPA')
+    Name = models.CharField(max_length=100)
+    Business = models.CharField(max_length=40, choices=VENDOR_CHOICES, default='Manufacturer')
+    Address = models.TextField()
+    City = models.CharField(max_length=30)
+    Phone = models.CharField(max_length=15)
+    Email = models.EmailField(max_length=50, null=True, blank=True)
+    Website = models.URLField(max_length=250, blank=True, null=True)
+    Country = CountryField(blank_label='(select country)')
 
     def __str__(self):
-        return self.Ven_Name
+        return f"{self.Company_Name}, {self.Name}"
+
+EMPLOYEE_CHOICES = (
+    ('Active','Active'),
+    ('Inactive','Inactive')
+)
 
 class Employees(models.Model):
     First_Name = models.CharField(max_length=50)
@@ -83,7 +103,8 @@ class Employees(models.Model):
         "Department", 
         on_delete=models.CASCADE) 
     Phone = models.CharField(max_length=15)
-    Email = models.EmailField(max_length=254)
+    Email = models.EmailField(max_length=254, null=True, blank=True)
+    Status = models.CharField(max_length=10, default='Active')
 
     def __str__(self):
-        return self.First_Name
+        return f"{self.First_Name}, {self.Last_Name}"
