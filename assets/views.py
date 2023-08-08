@@ -75,6 +75,8 @@ def RegAsset(request):
     context = {'Assetform': Assetform }
     return render(request, 'regAsset.html', context)
 
+
+
 @login_required(login_url='login')
 def RegVendor(request):
     Vendorform = VendorForm()
@@ -259,6 +261,8 @@ def unread_message_count(request):
 
 
 
+# def user_not_employee(request):
+#     return render(request, 'user_not_emplyee.html')
 
 
 
@@ -309,6 +313,7 @@ def home(request):
 
     assets_by_employee = Assets.objects.all().order_by('Employee').values('Employee').annotate(asset_count=Count('id'))
 
+    
     assets_by_employees = Assets.objects.all().prefetch_related('Employee').annotate(asset_count=Count('id')).order_by('Employee__Full_Name')
 
     asset = request.user.emp_user.assets_set.all()

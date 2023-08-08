@@ -28,7 +28,7 @@
     {% endfor %}
   </div>
 
-  <h4 class="fw-bold py-3 mb-4" style="text-align: center;"> Assign Groups</h4>
+  <h4 class="fw-bold py-3 mb-4" style="text-align: center;"> Assign Departments</h4>
 
   <!-- Responsive Table -->
   <div class="card">
@@ -37,8 +37,8 @@
         <thead class="table-dark">
           <tr class="text-nowrap">
             <th class="text-white">#</th>
-            <th class="text-white"> Assign Name </th>
-            <th class="text-white"> Action </th>
+            <th class="text-white"> Department Name </th>
+            <th class="text-white"> View </th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -47,7 +47,7 @@
               <td class="py-1">{{Assign.id}}</td>
               <td><strong>{{assign.Name}}</strong></td>
               <td>
-                <a href="{% url 'accounts:edit_assign' assign.id %}"><button class="btn btn-primary">View</button></a>
+                <a href="{% url 'accounts:edit_assign' assign.id %}"><button class="btn btn-primary">Action</button></a>
               </td>
               </tr>
             </tr>

@@ -53,23 +53,23 @@
             <th class="text-white"> Location </th>
             <th class="text-white"> Description </th>
             <th class="text-white"> Update</th>
-            <th class="text-white"> Del</th>
+            <!-- <th class="text-white"> Del</th> -->
           </tr>
         </thead>
         <tbody>
           {% for asset in assets %}
             <tr>
               <td class="py-1">{{asset.id}}</td>
-              <td><strong>{{asset.Employee}}</strong></td>
-              <td>{{asset.Name}}</td>
-              <td>{{asset.Quantity}}</td>
-              <td>{{asset.Model}}</td>
-              <td>{{asset.Departments}}</td>
-              <td>{{asset.Asset_State}}</td>
-              <td>{{asset.Date_Assigned}}</td>
-              <td>{{asset.Location}}</td>
-              <td>{{asset.Description}} </td>
-              <td> <a class="badge badge-success" href="#">Update</td>
+              <td class="text-center"><strong>{{asset.Employee}}</strong></td>
+              <td class="text-center">{{asset.Name}}</td>
+              <td class="text-center">{{asset.Quantity}}</td>
+              <td class="text-center">{{asset.Model}}</td>
+              <td class="text-center">{{asset.Departments}}</td>
+              <td class="text-center">{{asset.Asset_State}}</td>
+              <td class="text-center">{{asset.Date_Assigned}}</td>
+              <td class="text-center">{{asset.Location}}</td>
+              <td class="text-center">{{asset.Description}} </td>
+              <td><button type="button" class="btn btn-info"><a class="badge badge-success" href="#">Update</td></button> 
                 {% if request.user.is_staff %}
                   <td> <a class="badge badge-danger" href="#">Delete</td>
                 {% endif %}

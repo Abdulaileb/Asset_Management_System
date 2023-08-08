@@ -16,7 +16,8 @@ class AssetForm(forms.ModelForm):
     class Meta:
         model = Assets
         fields = ('Name','Type','Quantity','Model','Serian_Num','Asset_State','Departments','LifeSpan'
-        ,'Date_Acquired','Date_Assigned','Warantee_Start_Date','Warantee_End_Date','Employee','Location','Vendor','Description')
+        ,'Date_Acquired','Warantee_Start_Date','Warantee_End_Date','Location','Vendor','Description')
+        exclude = ('Date_Assigned','Employee')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,11 +30,11 @@ class AssetForm(forms.ModelForm):
         self.fields['Departments'].widget.attrs.update({'class': 'form-control'})
         self.fields['LifeSpan'].widget.attrs.update({'class': 'form-control'})
         self.fields['Date_Acquired'].widget.attrs.update({'class': 'form-control', 'placeholder': '1/1/2019'})
-        self.fields['Date_Assigned'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['Date_Assigned'].widget.attrs.update({'class': 'form-control'})
         self.fields['Warantee_Start_Date'].widget.attrs.update({'class': 'form-control', 'placeholder': '1/1/2019'})
         self.fields['Warantee_End_Date'].widget.attrs.update({'class': 'form-control', 'placeholder': '1/1/2019'})
-        self.fields['Employee'].widget.attrs.update({'class': 'form-control'})
-        self.fields['Date_Assigned'].widget.attrs.update({'class': 'form-control', 'placeholder': '1/1/2019'})
+        # self.fields['Employee'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['Date_Assigned'].widget.attrs.update({'class': 'form-control', 'placeholder': '1/1/2019'})
         self.fields['Location'].widget.attrs.update({'class': 'form-control'})
         self.fields['Vendor'].widget.attrs.update({'class': 'form-control'})
         self.fields['Description'].widget.attrs.update({'class': 'form-control'})
@@ -138,7 +139,6 @@ class EmployeeForm(forms.ModelForm):
         self.fields['profile_pic'].widget.attrs.update({'class': 'form-control'})
         self.fields['Date_of_Birth'].widget.attrs.update({'class': 'form-control'})
         self.fields['Marital_Status'].widget.attrs.update({'class': 'form-control'})
-
 
 class MessageForm(forms.ModelForm):
     subject = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))

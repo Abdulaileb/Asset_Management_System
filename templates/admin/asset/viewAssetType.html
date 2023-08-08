@@ -55,8 +55,8 @@
         <thead class="table-dark">
           <tr class="text-nowrap">
             <th class="text-white">#</th>
-            <th class="text-white"> Asset Type </th>
-            <th class="text-white"> Action </th>
+            <th class="text-white"> Name </th>
+            <th class="text-white"> View </th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -65,7 +65,7 @@
               <td class="py-1">{{type.id}}</td>
               <td><strong>{{type.type}}</strong></td>
               <td>
-                <a href="{% url 'accounts:edit_asset_type' type.id %}"><button class="btn btn-primary">View</button></a>
+                <a href="{% url 'accounts:edit_asset_type' type.id %}"><button class="btn btn-primary">Action</button></a>
               </td>
             </tr>
           {% endfor %}
