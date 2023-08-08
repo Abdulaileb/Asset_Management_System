@@ -42,7 +42,12 @@ INSTALLED_APPS = [
     'assets', # new
     'accounts', #new
 
-    'django_countries' #new
+    'django_countries', #new
+
+    'django_filters',
+    'debug_toolbar',
+    'crispy_forms', 
+
 ]
 
 
@@ -56,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', # new
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -107,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+#AUTHENTICATION_BACKENDS = [    'path.to.CustomAuthBackend',    'django.contrib.auth.backends.ModelBackend',]
+
 
 
 # Internationalization
@@ -122,6 +130,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
+DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M:%S']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -131,10 +141,22 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-AUTH_USER_MODEL = 'accounts.CustomUser' # new
+AUTH_USER_MODEL = 'accounts.User' # new
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+MEDIA_URL = '/images/'
+MEDIA_ROOT = str(BASE_DIR.joinpath ('static/images/'))
+
+
+#SMTP Configuration 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'abdulaidon28@gmail.com'
+EMAIL_HOST_PASSWORD = 'azjnzqysisiwxatp'

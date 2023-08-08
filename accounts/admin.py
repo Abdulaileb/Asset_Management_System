@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from accounts.models import CustomUser
+from accounts.models import User
+
 
 class CustomAdmin(UserAdmin):
-    list_display = ('email','username','date_joined','last_login','is_active','is_admin')
+    list_display = ('email','username','date_joined','last_login','is_admin','is_staff')
     search_fields = ('email','username',)
     readonly_fields = ('date_joined','last_login')
 
@@ -12,4 +13,4 @@ class CustomAdmin(UserAdmin):
     fieldsets = ()
 
 
-admin.site.register(CustomUser, CustomAdmin)
+admin.site.register(User, CustomAdmin)
